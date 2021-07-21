@@ -23,7 +23,7 @@ class Game
    puts "Enter P to play. Enter Q to quit."
  end
 
-  def start #dont test
+  def start
     welcome
     player_input = user_input
     until player_input == "P" || player_input == "Q"
@@ -62,21 +62,18 @@ class Game
     player_turn
     computer_turn
     board_display
-    # player_turn
   end
 
   def end_game_message
-    # require "pry"; binding.pry
     if @p_cruiser.health == 0 && @p_submarine.health == 0
       puts "\n You have been defeated!"
-       # return "You have been defeated!"
     else @ships.all? {|ship| ship.health == 0}
       puts "\n Victory!"
     end
     play_again
   end
 
-  def play_again #dont test
+  def play_again
     puts "\n play again, or quit?"
     user_input
       if user_input == "play again"
@@ -100,15 +97,11 @@ def player_cruiser_placement(p_cruiser)
 
 
     puts "\n Enter the coordinates for your Cruiser"
-    # cruiser_answer = gets.chomp
-    # @cruiser_coordinates = cruiser_answer.split(", ")
     p_cruiser_coords = user_input.split(" ")
-     # require "pry"; binding.pry
     if @player_board.valid_placement?(p_cruiser, p_cruiser_coords) == false
       puts "\n Try again. This time with valid coordinates."
       until @player_board.valid_placement?(p_cruiser, p_cruiser_coords) == true
-        p_cruiser_coords = user_input
-        .split(" ")
+        p_cruiser_coords = user_input.split(" ")
       end
     end
     @player_board.place(p_cruiser, p_cruiser_coords)
@@ -117,8 +110,6 @@ def player_cruiser_placement(p_cruiser)
   def player_submarine_placement(p_submarine)
     puts "\n Enter the coordinates for your Submarine"
     p_submarine_coords = user_input.split(" ")
-    # require "pry"; binding.pry
-    # require "pry"; binding.pry
     if @player_board.valid_placement?(p_submarine, p_submarine_coords) == false
       puts "\n Try again. This time with valid coordinates."
       until @player_board.valid_placement?(p_submarine, p_submarine_coords) == true
@@ -129,11 +120,9 @@ def player_cruiser_placement(p_cruiser)
   end
 
   def player_turn
-    # require "pry"; binding.pry
     puts "\n Enter a coordinate to find my battleship. Make sure it's valid."
     shoot_coord = user_input
     until @computer_board.valid_coordinate?(shoot_coord) == true  && @computer_board.cells[shoot_coord.to_sym].fired_upon? == false do
-      # require "pry"; binding.pry
       puts "\n Waiting for a valid coordinate..."
       shoot_coord = user_input
     end

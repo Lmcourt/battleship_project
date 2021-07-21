@@ -2,8 +2,8 @@ class Cell
 attr_reader :coordinate, :ship
   def initialize(coordinate)
     @coordinate = coordinate
-    @ship = nil #nil by default
-    @is_empty = true #empty by default
+    @ship = nil 
+    @is_empty = true
     @is_fired_upon = false
   end
 
@@ -25,7 +25,7 @@ attr_reader :coordinate, :ship
     @is_fired_upon = true
   end
 
-  def render(show_ship = false) #maybe instance variable? can't check if its true or false if I havent assigned it
+  def render(show_ship = false)
     if  @is_fired_upon == true && @is_empty == false && ship.sunk? == true
     "X"
     elsif @is_fired_upon == true && @is_empty == false

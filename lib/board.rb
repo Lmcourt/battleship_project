@@ -22,7 +22,6 @@ class Board
      D3:  Cell.new("D3"),
      D4:  Cell.new("D4")
      }
-
   end
 
   def valid_coordinate?(key)
@@ -41,7 +40,6 @@ class Board
     numbers = get_numbers(coordinates)
     letters = get_letters(coordinates)
 
-    #checks that ships don't overlap
     return false if coordinates.any? {|coordinate| @cells[coordinate.to_sym].ship}
     return false if ship.length != coordinates.length
     return true if letters.uniq.count == 1 &&  numbers.each_cons(2).all? { |first, second| second == first + 1 }
@@ -50,11 +48,7 @@ class Board
   end
 
   def place(ship, coordinates)
-    #checks that placement is valid before placing
-    # if valid_placement?(ship, coordinates) == true
-      # require "pry"; binding.pry
-      coordinates.each { |coordinate| @cells[coordinate.to_sym].place_ship(ship) }
-    # end
+    coordinates.each { |coordinate| @cells[coordinate.to_sym].place_ship(ship) }
   end
 
   def render(show_ship = false)
@@ -77,8 +71,8 @@ class Board
     else
       computer_board
     end
-
   end
+end
   # def render(show_ship = true)
   #   output = "  1 2 3 4 \n"
   #   letters =  ["A", "B", "C", "D"]
@@ -95,41 +89,3 @@ class Board
   #
   #   output
   # end
-end
-
-  #   output = "  1 2 3 4 \n"
-  #   letters =  ["A", "B", "C", "D"]
-  #   letters.each do |letter|
-  #     output << letter
-  #       @cells.values.each_slice(4) do |cell_group|
-  #         cell_group.each do |cell|
-  #           require "pry"; binding.pry
-  #           output << " " + cell.render
-  #         end
-  #       end
-  #       output <<  " \n"
-  #   end
-  #   output
-  # end
-
-
-
-#inject and reduce same something
-#need accumulator
-#
-
-
-#cell 3 ship == cell 2 ship
-#assignment pattern a) need container
-    # think of . as iterate over our coordinates
-        # take individual coordinate and assign value of ship
-  # place the ship which already has the place_ship method
-#do with numbers
-#compare with coordinates to see if consecutive
-###if diagonal or not -
-#cells being stored in a hash, dont worry about 4x4 grid
-#you will work with nested collection rather than single hash
-#all the same letter or all the same number will be shared
-#you can place a ship backwards
-#ship laced on a1 a2 a3 is valid, backwards is not valid
-#no diagonal, no empty space, three length on two, place off the board
