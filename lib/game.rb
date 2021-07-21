@@ -107,7 +107,8 @@ def player_cruiser_placement(p_cruiser)
     if @player_board.valid_placement?(p_cruiser, p_cruiser_coords) == false
       puts "\n Try again. This time with valid coordinates."
       until @player_board.valid_placement?(p_cruiser, p_cruiser_coords) == true
-        p_cruiser_coords.split(" ")
+        p_cruiser_coords = user_input
+        .split(" ")
       end
     end
     @player_board.place(p_cruiser, p_cruiser_coords)
@@ -121,7 +122,7 @@ def player_cruiser_placement(p_cruiser)
     if @player_board.valid_placement?(p_submarine, p_submarine_coords) == false
       puts "\n Try again. This time with valid coordinates."
       until @player_board.valid_placement?(p_submarine, p_submarine_coords) == true
-        p_submarine_coords.split(" ")
+        p_submarine_coords = user_input.split(" ")
       end
     end
     @player_board.place(p_submarine, p_submarine_coords)
@@ -140,7 +141,7 @@ def player_cruiser_placement(p_cruiser)
     @computer_board.cells[shoot_coord.to_sym].fire_upon
 
     if @computer_board.cells[shoot_coord.to_sym].render == "X"
-      puts "\n You shot at #{shoot_coord} GJ."
+      puts "\n You shot at #{shoot_coord} you sunk my ship."
     elsif computer_board.cells[shoot_coord.to_sym].render == "H"
       puts "\n You shot at #{shoot_coord} and it's a hit. I'm still gonna win."
     elsif computer_board.cells[shoot_coord.to_sym].render == "M"
