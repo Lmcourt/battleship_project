@@ -47,10 +47,6 @@ RSpec.describe Board do
     expect(board.valid_placement?(cruiser, ["A3", "A2", "A1"])).to eq(false)
 
     expect(board.valid_placement?(submarine, ["C1", "B1"])).to eq(false)
-
-    # extra test to see if a true statement returns true
-    # why are they coming back nil when all conditions pass in pry?
-
     expect(board.valid_placement?(submarine, ["A2", "A3"])).to eq(true)
     expect(board.valid_placement?(submarine, ["B1", "C1"])).to eq(true)
   end
@@ -77,11 +73,11 @@ RSpec.describe Board do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
 
-    board.place(cruiser, ["A1", "A2", "A3"])
+    board.place(cruiser, [:A1, :A2, :A3])
 
-    cell_1 = board.cells["A1"]
-    cell_2 = board.cells["A2"]
-    cell_3 = board.cells["A3"]
+    cell_1 = board.cells[:A1]
+    cell_2 = board.cells[:A2]
+    cell_3 = board.cells[:A3]
     expect(cell_3.ship == cell_2.ship).to eq(true)
 
   end
